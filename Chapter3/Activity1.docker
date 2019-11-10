@@ -1,7 +1,7 @@
 set -ex
 
 REGISTRY=dev.docker.local:5000
-SERVICENAME=basic-app
+SERVICENAME=postgresql
 
 GIT_VERSION=`git log -1 --format=%h`
 echo "version: $GIT_VERSION "
