@@ -156,7 +156,7 @@ ALTER TABLE ONLY pt_photos_processed.tag
     ADD CONSTRAINT tag_pkey PRIMARY KEY (id);
 
 
-ALTER TABLE pt_photos_processed.photos_tag ADD CONSTRAINT photos_fk FOREIGN KEY (photo_id) pt_photos_processed.REFERENCES photos(id);
+ALTER TABLE pt_photos_processed.photos_tag ADD CONSTRAINT photos_fk FOREIGN KEY (photo_id) REFERENCES pt_photos_processed.photos(id);
 
-ALTER TABLE pt_photos_processed.photos_tag ADD CONSTRAINT tag_fk FOREIGN KEY (tag_id) pt_photos_processed.REFERENCES tag(id);
+ALTER TABLE pt_photos_processed.photos_tag ADD CONSTRAINT tag_fk FOREIGN KEY (tag_id) REFERENCES pt_photos_processed.tag(id);
 
