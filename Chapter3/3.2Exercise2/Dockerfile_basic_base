@@ -2,3 +2,4 @@ FROM alpine
  
 RUN apk update && apk add wget curl
 
+RUN curl https://speed.hetzner.de/100MB.bin > speed_test.txt

@@ -2,6 +2,8 @@ FROM alpine
  
 RUN apk update
 RUN apk add wget curl
+
+RUN curl https://speed.hetzner.de/100MB.bin > speed_test.txt
  
 CMD mkdir /var/www/
 CMD mkdir /var/www/html/
