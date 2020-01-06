@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  init:
+    build:
+      context: ./init
+    volumes:
+      - static:/data
+
+  server:
+    image: nginx
+    volumes:
+      - static:/usr/share/nginx/html  
+    ports:
+      - "8080:80"
+volumes:
+  static:
