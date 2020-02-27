@@ -1,0 +1,20 @@
+version: '3'
+
+volumes:
+  testsplunk:
+  testsplunkindex:
+
+services:
+  splunk:
+    hostname: splunk
+    image: splunk/splunk
+    environment:
+      SPLUNK_START_ARGS: --accept-license
+      SPLUNK_PASSWORD: changeme
+    volumes:
+      - ./testsplunk:/opt/splunk/etc
+      - ./testsplunkindex:/opt/splunk/var
+    ports:
+      - "8000:8000"
+      - "9997:9997"
+      - "8088:8088"
