@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+
+  clean:
+    image: busybox
+    command: "rm -rf /static/index.html"
+    volumes:
+      - static:/static 
+
+  init:
+    image: busybox
+    command: "sh -c 'echo This is from init container >> /static/index.html'"
+    volumes:
+      - static:/static 
+    depends_on:
+    - "clean"
+
+  pre:
+    image: busybox
+    command: "sh -c 'echo This is from pre container >> /static/index.html'"
+    volumes:
+      - static:/static 
+    depends_on:
+    - "init"
+
+  server:
+    image: nginx
+    volumes:
+      - static:/usr/share/nginx/html  
+    ports:
+      - "8080:80"
+    depends_on:
+    - "pre"
+
+volumes:
+  static:

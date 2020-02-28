@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+
+  print:
+    image: busybox
+    command: env
+    env_file:
+    - print.env
+    environment:
+    - ENV_FROM_COMPOSE_FILE=HELLO
+    - ENV_FROM_SHELL
