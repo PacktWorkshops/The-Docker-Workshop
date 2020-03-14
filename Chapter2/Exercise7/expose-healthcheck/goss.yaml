@@ -1,0 +1,13 @@
+package:
+  apache2:
+    installed: true
+  curl:
+    installed: true
+service:
+  apache2:
+    enabled: true
+    running: true
+http:
+  http://localhost/:
+    status: 200
+    body: []

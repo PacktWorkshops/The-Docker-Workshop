@@ -1,0 +1,10 @@
+package:
+  apache2:
+    installed: true
+user:
+  www-data:
+    exists: true
+    groups:
+    - www-data
+    home: /var/www
+    shell: /usr/sbin/nologin

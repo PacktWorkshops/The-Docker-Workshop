@@ -1,0 +1,15 @@
+file:
+  /var/www/html/index.html:
+    exists: true
+    mode: "0664"
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+package:
+  apache2:
+    installed: true
+service:
+  apache2:
+    enabled: true
+    running: true
