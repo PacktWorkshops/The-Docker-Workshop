@@ -1,0 +1,44 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=/run/secrets/pg_password
+    secrets:
+      - pg_password
+  web:
+    build: .
+    image: swarm_web:latest
+    command: gunicorn chapter_nine.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - .:/application
+    ports:
+      - 8000:8000
+    environment:
+      - PGPASSWORD=/run/secrets/pg_password
+    deploy:
+      replicas: 2
+    depends_on:
+      - db
+  nginx:
+    build: ./nginx
+    image: swarm_nginx:latest
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+    configs:
+      - source: nginx_conf
+        target: /etc/nginx/conf.d/nginx.conf
+
+configs:
+  nginx_conf:
+    file: nginx/nginx.conf
+
+secrets:
+  pg_password:
+    external: true
+
