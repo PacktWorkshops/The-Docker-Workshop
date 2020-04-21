@@ -1,0 +1,69 @@
+# This section contains your application metadata.
+# Version of the application
+version: 0.1.0
+# Name of the application
+name: panoramic-trekking-app
+# A short description of the application
+description: An app to store all your trekking photos and images 
+# List of application maintainers with name and email for each
+maintainers:
+  - name: vincesesto
+    email: vincesesto@email.com
+
+---
+# This section contains the Compose file that describes your application services.
+version: "3.6"
+services:
+  web:
+    image: activity2_web:latest
+    command: gunicorn panoramic_trekking_app.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/service/static
+    expose:
+      - 8000
+    environment:
+      - SQL_ENGINE=${web.SQL_ENGINE}
+      - SQL_DATABASE=${web.SQL_DATABASE}
+      - SQL_USER=${web.SQL_USER}
+      - SQL_PASSWORD=${web.SQL_PASSWORD}
+      - SQL_HOST=${web.SQL_HOST}
+      - SQL_PORT=${web.SQL_PORT}
+      - PGPASSWORD=${web.PGPASSWORD}
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5432:5432
+
+  nginx:
+    image: activity2_nginx:latest
+    volumes:
+      - static_volume:/service/static
+    ports:
+      - ${nginx.port}:80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+
+---
+# This section contains the default values for your application parameters.
+nginx:
+  port: 8000
+web:
+  SQL_ENGINE: django.db.backends.postgresql
+  SQL_DATABASE: pta_database
+  SQL_USER: pta_user
+  SQL_PASSWORD: pta_password
+  SQL_HOST: db
+  SQL_PORT: 5432
+  PGPASSWORD: docker
+

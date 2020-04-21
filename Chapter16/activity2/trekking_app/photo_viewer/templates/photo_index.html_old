@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="col-md-8 offset-md-2">
+    <h1>Photo Index</h1>
+    <hr>
+    {% for photo in photos %}
+    <h2><a href="{% url 'photo_detail' photo.pk%}">{{ photo.title }}</a></h2>
+    <small>
+        {{ photo.created_on.date }} |&nbsp;
+        Country:&nbsp;
+        {% for country in photo.country.all %}
+        <a href="{% url 'photo_country' country.name %}">
+            {{ country.name }}
+        </a>&nbsp;
+        {% endfor %}
+    </small>
+    <p>{{ photo.body | slice:":400" }}...</p>
+    {% endfor %}
+</div>
+{% endblock %}

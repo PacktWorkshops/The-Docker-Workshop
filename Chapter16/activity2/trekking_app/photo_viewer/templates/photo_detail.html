@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_content %}
+
+
+<div class="col-md-8 offset-md-2">
+    <h1>{{ photo.title }}</h1>
+    <a href="{% url 'photo_index' %}">Return to photo viewer</a>&nbsp;
+    <div class="row">
+        <div class="col-md-8">
+            <img src="{{ photo.photo.url }}" alt="" width="100%">
+        </div>
+        <div class="col-md-4">
+            <h5>About this photo:</h5>
+            <p>{{ photo.body }}</p>
+            <br>
+            <h5>Country taken:</h5>
+            <p>{% for country in photo.country.all %}<a href="{% url 'photo_country' country.name %}">{{ country.name }}</a>&nbsp;{% endfor %}</p>
+            <h5>Date of photo:</h5>
+            <p>{{ photo.created_on.date }}<p>
+        </div>
+    </div>
+</div>
+{% endblock %}

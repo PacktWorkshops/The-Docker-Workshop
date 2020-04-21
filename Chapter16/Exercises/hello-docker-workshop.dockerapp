@@ -1,0 +1,28 @@
+# This section contains your application metadata.
+# Version of the application
+version: 0.1.0
+# Name of the application
+name: hello-docker-workshop
+# A short description of the application
+description: 
+# List of application maintainers with name and email for each
+maintainers:
+  - name: vincesesto
+    email: 
+
+---
+# This section contains the Compose file that describes your application services.
+version: "3.6"
+services:
+  web:
+    image: hashicorp/http-echo
+    command: ["-text", "${web.text}"]
+    ports:
+      - ${web.port}:5678
+
+---
+# This section contains the default values for your application parameters.
+web:
+  port: 8080
+  text: "Hello Docker Workshop!"
+
