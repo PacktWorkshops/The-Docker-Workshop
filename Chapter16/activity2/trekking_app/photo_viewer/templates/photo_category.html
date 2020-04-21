@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block page_content %}
+<div class="col-md-8 offset-md-2">
+    <h1>{{ country | title }}</h1>
+    <a href="{% url 'photo_index' %}">Return to photo viewer</a>&nbsp;
+    <hr>
+    {% for photo in photos %}
+        <h2><a href="{% url 'photo_detail' photo.pk%}">{{ photo.title }}</a></h2>
+        <small>
+            <img class="card-img-top" src="{{ photo.photo.url }}">
+            {{ photo.created_on.date }} |&nbsp;
+            Countries:&nbsp;
+            {% for country in photo.country.all %}
+            <a href="{% url 'photo_country' country.name %}">
+                {{ country.name }}
+            </a>&nbsp;
+            {% endfor %}
+        </small>
+        <p>{{ photo.body | slice:":400" }}...</p>
+    {% endfor %}
+</div>
+{% endblock %}
