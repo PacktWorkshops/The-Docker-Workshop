@@ -26,7 +26,7 @@ docker service create --network=weave-custom-net \
 --replicas=3 \
 --name=workshop \
 -p 80:80 \
-onuryilmaz/hello-plain-text
+packtworkshops/the-docker-workshop:chapter15-hello-plain-text 
 ```
 
 5) Get the names of the containers by running the following command:
