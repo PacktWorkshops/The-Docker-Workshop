@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=docker
+
+  web:
+    image: packtworkshops/the-docker-workshop:chapter5-pta-web
+    volumes:
+      - static_data:/service/static
+    depends_on:
+      - db
+
+  nginx:
+    image: packtworkshops/the-docker-workshop:chapter5-pta-nginx
+    volumes:
+      - static_data:/service/static
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+
+volumes:
+  db_data:
+  static_data:
