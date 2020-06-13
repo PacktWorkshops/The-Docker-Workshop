@@ -1,0 +1,9 @@
+# run with: 
+# GOSS_SLEEP=20s dcgoss run nginx
+port:
+  tcp:80: 
+    listening: true
+http:
+  http://0.0.0.0/photo_viewer:
+    status: 200
+    no-follow-redirects: false

@@ -1,37 +1,26 @@
 version: "3"
-
 services:
-
-  clean:
-    image: busybox
-    command: "rm -rf /static/index.html"
+  database:
+    image: mysql:5.7
     volumes:
-      - static:/static 
-
-  init:
-    image: busybox
-    command: "sh -c 'echo This is from init container >> /static/index.html'"
-    volumes:
-      - static:/static 
+      - data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+  wordpress:
     depends_on:
-    - "clean"
-
-  pre:
-    image: busybox
-    command: "sh -c 'echo This is from pre container >> /static/index.html'"
-    volumes:
-      - static:/static 
-    depends_on:
-    - "init"
-
-  server:
-    image: nginx
-    volumes:
-      - static:/usr/share/nginx/html  
+      - database
+    image: wordpress:latest
     ports:
       - "8080:80"
-    depends_on:
-    - "pre"
-
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_USER: user
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: db
 volumes:
-  static:
+     data: {} 

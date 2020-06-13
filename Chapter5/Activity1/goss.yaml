@@ -1,0 +1,9 @@
+# run with: 
+# GOSS_SLEEP=5s dcgoss run wordpress
+port:
+  tcp:80: 
+    listening: true
+http:
+  http://localhost:80:
+    status: 200
+    no-follow-redirects: false

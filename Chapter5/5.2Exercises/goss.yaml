@@ -1,0 +1,11 @@
+# run with: 
+# dcgoss run print
+command:
+  echo:
+    exit-status: 0
+    exec: "echo $ENV_FROM_COMPOSE_FILE" 
+    stdout:
+    - HELLO
+    stderr: []
+    timeout: 10000
+    skip: false

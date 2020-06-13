@@ -1,0 +1,11 @@
+# run with: 
+# dcgoss run server
+file:
+  /usr/share/nginx/html/index.html:
+    exists: true
+    owner: root
+    filetype: file
+    contains:
+    - pre
+    - init
+    
