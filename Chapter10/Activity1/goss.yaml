@@ -1,0 +1,6 @@
+# run with: 
+# kgoss run -i httpd
+http:
+  http://panoramic-trekking-app/photo_viewer:
+    status: 200
+    no-follow-redirects: false
