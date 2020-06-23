@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+
+<h1>Panoramic Trekking App - Photo Viewer</h1>
+<div class="row">
+{% for panoramics in photos %}
+    <div class="col-md-4">
+        <div class="card mb-2">
+            <img class="card-img-top" src="{{ panoramics.photo.url }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ panoramics.title }}</h5>
+                <p class="card-text">{{ panoramics.body | slice:":400" }}...</p>
+                <small>
+                    {{ panoramics.created_on.date }} |&nbsp;
+                    Country:&nbsp;
+                    {% for country in panoramics.country.all %}
+                    <a href="{% url 'photo_country' country.name %}">
+                    {{ country.name }}
+                    </a>&nbsp;
+                    {% endfor %}
+                </small>
+                <a href="{% url 'photo_detail' panoramics.pk %}"
+                    class="btn btn-primary">
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
