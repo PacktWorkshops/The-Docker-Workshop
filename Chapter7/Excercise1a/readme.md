@@ -3,7 +3,7 @@ To delete the containers and images from previous chapters:
 $ docker container rm -f $(docker container ls -aq)
 $ docker image rm $(docker image ls)
 ```
-*****Exercise 1.a. – Docker Container States*****
+**Exercise 1.a. – Docker Container States**
 
 In this exercise, we transit through all the states for a Docker container except the CREATE one, which we shall see in the next section of this exercise, Exercise 1.b.
 1. Open a terminal and run the following command:
