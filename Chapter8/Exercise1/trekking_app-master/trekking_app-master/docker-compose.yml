@@ -1,0 +1,38 @@
+
+version: '3.3'
+
+services:
+  web:
+    build: .
+    command: gunicorn panoramic_trekking_app.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - static_volume:/service/static
+    expose:
+      - 8000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=docker
+    ports:
+      - 5432:5432
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/service/static
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_volume:
+ 
