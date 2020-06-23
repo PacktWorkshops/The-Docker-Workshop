@@ -1,4 +1,5 @@
 **Exercise 1.b. – Docker Container State: CREATED**
+
 Now, we have seen all the various statuses of the container except CREATED. Usually, we do not see the CREATED status
  because the main process runs. 
 1. To see the CREATED status, we shall run a command that generates an error. The container cannot get UP and running. 
