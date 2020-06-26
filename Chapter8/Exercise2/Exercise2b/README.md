@@ -97,4 +97,7 @@ At the bottom, again you will find that Jenkins built the image successfully.
 ```
 $ docker images
 ``` 
-
+24. Again clean your lab for the next exercise by removing all the images listed except Jenkinsci/blueocean.
+```
+$ docker image rm hit_counter python:alpine 786
+```
