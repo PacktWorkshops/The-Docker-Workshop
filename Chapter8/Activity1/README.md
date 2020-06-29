@@ -1,4 +1,4 @@
-# Activity 
+# Activity 1
 
 ```
 docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
@@ -17,10 +17,12 @@ http://<your IP>:9000
 ```
 IFCONFIG
 ```
- 
 
 ```
-sonarQube scanner
+H/5 * * * *
+```
+
+```
 sonar.projectKey=hit_count
 sonar.projectName=hit_count
 sonar.projectVersion=1.0
