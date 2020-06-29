@@ -8,7 +8,7 @@ LABEL version=1.0
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Apache, PHP and other packages
+# Install Apache, PHP, and other packages
 RUN apt-get update && \
     apt-get -y install apache2 \
     php \ 
