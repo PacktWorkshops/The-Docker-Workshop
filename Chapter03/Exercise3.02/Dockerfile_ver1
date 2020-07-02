@@ -13,5 +13,5 @@ WORKDIR /var/www/html/
 COPY Dockerfile.tar.gz /tmp/
 RUN tar -zxvf /tmp/Dockerfile.tar.gz -C /var/www/html/
 RUN rm /tmp/Dockerfile.tar.gz
- 
+
 RUN cat Dockerfile
