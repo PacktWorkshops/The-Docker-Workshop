@@ -1,0 +1,41 @@
+# Testing Using goss
+# Install using curl -fsSL https://goss.rocks/install | sh
+# Change the name of the file goss.yaml
+# Run tests using: dgoss run -it <image_name> sh
+# More information on goss here: https://github.com/aelsabbahy/goss
+file:
+  /home/security_apps/test_memory.sh:
+    exists: true
+    mode: "0755"
+    size: 45
+    owner: "20002"
+    group: "20002"
+    filetype: file
+    contains: []
+package:
+  curl:
+    installed: true
+    versions:
+    - 7.66.0-r0
+  libcap:
+    installed: true
+    versions:
+    - 2.27-r0
+  nmap:
+    installed: true
+    versions:
+    - 7.70-r4
+  wget:
+    installed: true
+    versions:
+    - 1.20.3-r0
+user:
+  "20002":
+    exists: true
+    uid: 20002
+    gid: 10001
+    groups:
+    - "20002"
+    home: /home/security_apps
+    shell: /bin/ash
+

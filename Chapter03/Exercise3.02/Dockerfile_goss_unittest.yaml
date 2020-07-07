@@ -1,0 +1,32 @@
+# Testing Using goss
+# Install using curl -fsSL https://goss.rocks/install | sh
+# Change the name of the file goss.yaml
+# Run tests using: dgoss run -it <image_name> sh
+# More information on goss here: https://github.com/aelsabbahy/goss
+file:
+  /var/www/html:
+    exists: true
+    mode: "0755"
+    size: 4096
+    owner: root
+    group: root
+    filetype: directory
+    contains: []
+  /var/www/html/Dockerfile:
+    exists: true
+    mode: "0644"
+    size: 258
+    owner: root
+    group: root
+    filetype: file
+    contains: []
+package:
+  curl:
+    installed: true
+    versions:
+    - 7.66.0-r0
+  wget:
+    installed: true
+    versions:
+    - 1.20.3-r0
+
