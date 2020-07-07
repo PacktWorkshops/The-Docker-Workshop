@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: panoramic-trekking-app
+spec:
+  serviceName: panoramic-trekking-app
+  replicas: 1
+  selector:
+    matchLabels:
+      app: panoramic-trekking-app
+  template:
+    metadata:
+      labels:
+        app: panoramic-trekking-app
+    spec:
+      containers:
+      - name: nginx
+        image: packtworkshops/the-docker-workshop:chapter10-pta-nginx
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: static
+          mountPath: /service/static
+      - name: pta
+        image: packtworkshops/the-docker-workshop:chapter10-pta-web
+        volumeMounts:
+        - name: static
+          mountPath: /service/static
+  volumeClaimTemplates:
+  - metadata:
+      name: static
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi

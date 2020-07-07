@@ -1,0 +1,6 @@
+# run with: 
+# kgoss run -i httpd
+http:
+  http://wordpress-service:
+    status: 200
+    no-follow-redirects: false
