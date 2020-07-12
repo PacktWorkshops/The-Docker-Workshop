@@ -1,0 +1,5 @@
+command:
+  "docker volume inspect volume-over-ssh":
+    exit-status: 0
+    stdout: 
+    - "vieux/sshfs"

@@ -1,0 +1,5 @@
+command:
+  "docker plugin ls":
+    exit-status: 0
+    stdout: 
+    - "weaveworks/net-plugin:2.5.2"

@@ -1,0 +1,11 @@
+file:
+  /etc/docker/policies/authz.rego:
+    exists: true
+    filetype: file
+    contains:
+    - docker.authz
+command:
+  "docker plugin ls":
+    exit-status: 0
+    stdout: 
+    - "opa-docker-authz:readonly"

@@ -1,0 +1,14 @@
+command:
+  "docker ps":
+    exit-status: 0
+    stdout: 
+    - "mysql"
+    - "wordpress"
+  "docker volume inspect wp-content":
+    exit-status: 0
+    stdout: 
+    - "vieux/sshfs"
+http:
+  http://localhost:8080:
+    status: 200
+    no-follow-redirects: false
