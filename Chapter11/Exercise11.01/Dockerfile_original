@@ -8,4 +8,3 @@ RUN echo "cat /proc/meminfo; mpstat; pmap -x 1" >> test_memory.sh
 RUN chmod 755 test_memory.sh
 
 CMD ["sh", "test_memory.sh"]
-
