@@ -21,5 +21,3 @@ queries:
       WHERE state IS NOT NULL
       GROUP BY state
       FROM pg_stat_database
-
-
