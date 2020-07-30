@@ -41,4 +41,3 @@ configs:
 secrets:
   pg_password:
     external: true
-
