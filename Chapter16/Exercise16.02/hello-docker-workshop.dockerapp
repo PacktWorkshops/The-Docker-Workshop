@@ -25,4 +25,3 @@ services:
 web:
   port: 8080
   text: "Hello Docker Workshop!"
-
